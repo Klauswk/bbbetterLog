@@ -29,7 +29,7 @@
                     <tbody>
                         <tr ng-class="message.logLevel" ng-repeat="message in app.messages| filter:{message: app.filter}">
                             <td>{{message.level}}</td>
-                            <td>{{message.timestamp | date}}</td>
+                            <td>{{message.timestamp}}</td>
                             <td>{{message.tag}}</td>
                             <td>{{message.message}}</td>
                         </tr>

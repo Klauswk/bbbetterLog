@@ -46,6 +46,10 @@ angular.module("betterLog").controller("AppController", function ($scope) {
                 return 'text-primary';
         }
     }
+
+    function setDate(timestamp){
+        return timestamp.substring(11);
+    }
 });
 
 
