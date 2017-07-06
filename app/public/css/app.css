@@ -5,7 +5,7 @@
 
 .scrollable
 {
-   display: block;
-   overflow: auto;
-   height: 100px;
+   display:block;
+   height: 90%;
+   overflow-y: auto;
 }

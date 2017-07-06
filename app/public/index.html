@@ -16,7 +16,6 @@
             </div>
             <div class="col-md-10">
                 <input class="form-control" type="text" placeholder="Search for messages" ng-model="app.filter">
-                
                 <table id="content-table" class="table table-striped">
                     <thead>
                         <tr>
@@ -25,9 +24,10 @@
                             <th>Tag</th>
                             <th>Message</th>
                         </tr>
-                    </thead>
+                </table>
+                <table id="content-table" class="table table-striped scrollable">
                     <tbody>
-                        <tr ng-repeat="message in app.messages| filter:{message: app.filter}">
+                        <tr ng-class="message.logLevel" ng-repeat="message in app.messages| filter:{message: app.filter}">
                             <td>{{message.level}}</td>
                             <td>{{message.timestamp | date}}</td>
                             <td>{{message.tag}}</td>

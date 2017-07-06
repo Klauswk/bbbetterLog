@@ -22,13 +22,28 @@ angular.module("betterLog").controller("AppController", function ($scope) {
             lineReader.on('line', function (line) {
                 if (line && line !== "\n") {
                     console.log("Line", line);
-                    vm.messages.push(JSON.parse(line));
+                    const parsedLine = JSON.parse(line);
+                    parsedLine.logLevel = setLogLevel(parsedLine.level);
+                    vm.messages.push(parsedLine);
                 }
             });
             lineReader.on('close', () => {
                 console.log("Finished");
                 $scope.$digest();
             });
+        }
+    }
+
+    function setLogLevel(level){
+        switch(level){
+            case 'info':
+                return 'text-info';
+            case 'warn':
+                return 'text-warning';
+            case 'error':
+                return 'text-danger';
+            default:
+                return 'text-primary';
         }
     }
 });
