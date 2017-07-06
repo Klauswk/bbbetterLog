@@ -23,15 +23,15 @@
                             <th>Level</th>
                             <th>Date</th>
                             <th>Tag</th>
-                            <th>Data</th>
+                            <th>Message</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="message in app.messages| filter:{tag: app.filter}">
+                        <tr ng-repeat="message in app.messages| filter:{message: app.filter}">
                             <td>{{message.level}}</td>
                             <td>{{message.timestamp | date}}</td>
                             <td>{{message.tag}}</td>
-                            <td>{{message.data}}</td>
+                            <td>{{message.message}}</td>
                         </tr>
                     </tbody>
                 </table>

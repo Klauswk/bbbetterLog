@@ -2,13 +2,13 @@ angular.module("betterLog", []);
 
 angular.module("betterLog").controller("AppController", function ($scope) {
     var vm = this;
-    vm.messages = [{ "tag": "asd", "level": "info", data: { asd: 10 }, timestamp: new Date() }];
+    vm.messages = [];
 
     var fs = require('fs'),
         path = require('path');
 
     const readline = require('readline');
-    const file = '/home/dev/Projects/bbbetterLog/blabla.txt';
+    const file = '/mnt/bbb/log/development.log';
 
     fs.watchFile(file, (curr, prev) => {
         readNewData(file, curr.size, prev.size);

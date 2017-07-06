@@ -13,5 +13,8 @@
     "bigbluebutton"
   ],
   "author": "Klaus Klein",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.6.11"
+  }
 }
