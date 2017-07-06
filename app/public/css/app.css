@@ -1,0 +1,11 @@
+.form-control {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.scrollable
+{
+   display: block;
+   overflow: auto;
+   height: 100px;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "bbbetterlog",
+  "version": "1.0.0",
+  "description": "An better log to bigbluebutton",
+  "main": "app/main.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "electron . --allow-file-access-from-files"
+  },
+  "keywords": [
+    "log",
+    "bbb",
+    "bigbluebutton"
+  ],
+  "author": "Klaus Klein",
+  "license": "MIT"
+}
