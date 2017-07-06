@@ -3,6 +3,7 @@ angular.module("betterLog", []);
 angular.module("betterLog").controller("AppController", function ($scope) {
     var vm = this;
     vm.messages = [];
+    vm.clearLog = clearLog;
 
     var fs = require('fs'),
         path = require('path');
@@ -14,6 +15,10 @@ angular.module("betterLog").controller("AppController", function ($scope) {
         readNewData(file, curr.size, prev.size);
     });
 
+    function clearLog() {
+        vm.messages = [];
+    }
+
     function readNewData(file, curr, prev) {
         if (curr > prev) {
             var lineReader = readline.createInterface({
@@ -21,21 +26,19 @@ angular.module("betterLog").controller("AppController", function ($scope) {
             });
             lineReader.on('line', function (line) {
                 if (line && line !== "\n") {
-                    console.log("Line", line);
                     const parsedLine = JSON.parse(line);
                     parsedLine.logLevel = setLogLevel(parsedLine.level);
                     vm.messages.push(parsedLine);
                 }
             });
             lineReader.on('close', () => {
-                console.log("Finished");
                 $scope.$digest();
             });
         }
     }
 
-    function setLogLevel(level){
-        switch(level){
+    function setLogLevel(level) {
+        switch (level) {
             case 'info':
                 return 'text-info';
             case 'warn':
@@ -45,10 +48,6 @@ angular.module("betterLog").controller("AppController", function ($scope) {
             default:
                 return 'text-primary';
         }
-    }
-
-    function setDate(timestamp){
-        return timestamp.substring(11);
     }
 });
 
