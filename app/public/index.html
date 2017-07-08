@@ -3,20 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Klaus Klein">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="./../../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 
 <body ng-app="betterLog">
     <div class="container" ng-controller="AppController as app">
         <div class="row">
-            <div class="col-md-2">
-                <h4>Filters</h4>
-                <button ng-click="app.clearLog()">Clear</button>
+            <div class="col-sm-2">
+                <div class="col-sm-4">
+                    <h4>Saved Filters</h4>
+                </div>
+                <div class="col-sm-4">
+
+                </div>
             </div>
-            <div class="col-md-10">
-                <input class="form-control" type="text" placeholder="Search for messages" ng-model="app.filter">
+            <div class="col-sm-10">
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" placeholder="Search for messages" ng-model="app.filter">
+                </div>
+                <div class="col-sm-2">
+                    <button class="form-control" ng-click="app.clearLog()">Clear Log</button>
+                </div>
                 <table id="content-table" class="table table-striped">
                     <thead>
                         <tr>
@@ -39,7 +47,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script type="text/javascript" src="./../../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 </body>
 
