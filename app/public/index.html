@@ -8,17 +8,23 @@
 </head>
 
 <body ng-app="betterLog">
-    <div class="container" ng-controller="AppController as app">
+    <div class="container-fluid" ng-controller="AppController as app">
         <div class="row">
-            <div class="col-sm-2">
-                <div class="col-sm-4">
-                    <h4>Saved Filters</h4>
-                </div>
-                <div class="col-sm-4">
-
+            <div class="col-sm-3 col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="text-muted"> Filters </i>
+                        <a class="glyphicon glyphicon-plus gi-1x text-success" ng-click="app.openDialog()"></a>
+                        <a class="glyphicon glyphicon-minus gi-1x text-danger"></a>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-unstyled">
+                            <li>All Messages (No filter) </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-9 col-md-10">
                 <div class="col-sm-10">
                     <input class="form-control" type="text" placeholder="Search for messages" ng-model="app.filter">
                 </div>

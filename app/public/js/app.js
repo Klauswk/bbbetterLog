@@ -4,6 +4,7 @@ angular.module("betterLog").controller("AppController", function ($scope) {
     var vm = this;
     vm.messages = [];
     vm.clearLog = clearLog;
+    vm.openDialog = openDialog;
 
     var fs = require('fs'),
         path = require('path');
@@ -17,6 +18,13 @@ angular.module("betterLog").controller("AppController", function ($scope) {
 
     function clearLog() {
         vm.messages = [];
+    }
+
+    function openDialog() {
+        const { dialog } = require('electron').remote;
+        
+        console.log(dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] }));
+
     }
 
     function readNewData(file, curr, prev) {
