@@ -1,7 +1,8 @@
 angular.module('betterLog', []);
 
 const fs = require('fs');
-const filterDAO = FiltersDAO('filters');
+
+const { ipcRenderer } = require('electron')
 
 angular.module('betterLog').controller('AppController', function ($scope) {
     var vm = this;
@@ -11,7 +12,6 @@ angular.module('betterLog').controller('AppController', function ($scope) {
     vm.showForm = showForm;
     vm.shouldShow = false;
     vm.filters = ['Level', 'Tag', 'Message'];
-    vm.savedfilters = filterDAO.getAllFilters();
     vm.form = {};
     vm.saveFilter = saveFilter;
     vm.setFilter = setFilter;
@@ -19,12 +19,19 @@ angular.module('betterLog').controller('AppController', function ($scope) {
     const readline = require('readline');
     const file = '/mnt/bbb/log/development.log';
 
+    ipcRenderer.on('getAllFilters', (event, arg) => {
+        vm.savedfilters = arg;
+        $scope.$digest();
+    });
+
+    ipcRenderer.send('getAllFilters');
+
     fs.watchFile(file, (curr, prev) => {
         readNewData(file, curr.size, prev.size);
     });
 
-    function setFilter(filter){
-        if(!filter){
+    function setFilter(filter) {
+        if (!filter) {
             vm.filter = '';
             return;
         }
@@ -33,7 +40,8 @@ angular.module('betterLog').controller('AppController', function ($scope) {
     }
 
     function saveFilter(options) {
-        filterDAO.addFilter(options);
+        ipcRenderer.send('addFilter', options);
+        ipcRenderer.send('getAllFilters');
     }
 
     function clearLog() {
