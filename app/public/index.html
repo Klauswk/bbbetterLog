@@ -15,7 +15,7 @@
                     <div class='panel-heading'>
                         <i class='text-muted'> Filters </i>
                         <a class='glyphicon glyphicon-plus gi-1x text-success' ng-click='app.showForm(true)'></a>
-                        <a class='glyphicon glyphicon-minus gi-1x text-danger'></a>
+                        <a class='glyphicon glyphicon-minus gi-1x text-danger' ng-click='app.removeFilter(app.filter)'></a>
                     </div>
                     <div ng-show='app.shouldShow'>
                         <select class='form-control' ng-options='filter for filter in app.filters' ng-model='app.form.choosedFilter'>

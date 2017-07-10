@@ -9,7 +9,7 @@ ipcMain.on('addFilter', (event, f) => {
   event.returnValue = f
 })
 
-ipcMain.on('removeFilter', function (f) {
+ipcMain.on('removeFilter', function (event,f) {
   filtersDAO.removeFilter(f);
   event.returnValue = f
 });

@@ -14,6 +14,7 @@ angular.module('betterLog').controller('AppController', function ($scope) {
     vm.filters = ['Level', 'Tag', 'Message'];
     vm.form = {};
     vm.saveFilter = saveFilter;
+    vm.removeFilter = removeFilter;
     vm.setFilter = setFilter;
 
     const readline = require('readline');
@@ -41,6 +42,11 @@ angular.module('betterLog').controller('AppController', function ($scope) {
 
     function saveFilter(options) {
         ipcRenderer.send('addFilter', options);
+        ipcRenderer.send('getAllFilters');
+    }
+
+    function removeFilter(options) {
+        ipcRenderer.send('removeFilter', options);
         ipcRenderer.send('getAllFilters');
     }
 

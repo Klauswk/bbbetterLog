@@ -40,10 +40,10 @@ class FilterDAO {
 
   }
 
-  removeFilter(f) {
-    console.log("Removing: ", f);
+  removeFilter(message) {
+    console.log("Removing: ", message);
     this.db.serialize(() => {
-      this.db.run(`DELETE FROM ${this.tableName} where name = ?`, f.name);
+      this.db.run(`DELETE FROM ${this.tableName} where message = ?`, message);
     });
   }
 }
