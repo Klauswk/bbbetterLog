@@ -1,37 +1,57 @@
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Klaus Klein">
-    <link rel="stylesheet" href="./../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <meta charset='utf-8'>
+    <meta name='author' content='Klaus Klein'>
+    <link rel='stylesheet' href='./../../bower_components/bootstrap/dist/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='css/app.css'>
 </head>
 
-<body ng-app="betterLog">
-    <div class="container-fluid" ng-controller="AppController as app">
-        <div class="row">
-            <div class="col-sm-3 col-md-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="text-muted"> Filters </i>
-                        <a class="glyphicon glyphicon-plus gi-1x text-success" ng-click="app.openDialog()"></a>
-                        <a class="glyphicon glyphicon-minus gi-1x text-danger"></a>
+<body ng-app='betterLog'>
+    <div class='container-fluid' ng-controller='AppController as app'>
+        <div class='row'>
+            <div class='col-sm-3 col-md-2'>
+                <div class='panel panel-default'>
+                    <div class='panel-heading'>
+                        <i class='text-muted'> Filters </i>
+                        <a class='glyphicon glyphicon-plus gi-1x text-success' ng-click='app.showForm(true)'></a>
+                        <a class='glyphicon glyphicon-minus gi-1x text-danger'></a>
                     </div>
-                    <div class="panel-body">
-                        <ul class="list-unstyled">
-                            <li>All Messages (No filter) </li>
+                    <div ng-show='app.shouldShow'>
+                        <select class='form-control' ng-options='filter for filter in app.filters' ng-model='app.form.choosedFilter'>
+                            <option value=''>Choose a Filter</option>
+                        </select>
+                        <div class='form-group'>
+                            <label>Name</label>
+                            <input type='text' class='form-control' placeholder='Name' ng-model='app.form.name'>
+                        </div>
+                        <div class='form-group'>
+                            <label>Message</label>
+                            <input type='text' class='form-control' placeholder='Message to Search' ng-model='app.form.message'>
+                        </div>
+                        <div class='form-group'>
+                            <button type='submit' class='btn btn-primary btn-block' ng-click='app.saveFilter(app.form)'>Submit</button>
+                        </div>
+                        <div class='form-group'>
+                            <button type='submit' class='btn btn-warning btn-block' ng-click='app.showForm(false)'>Close</button>
+                        </div>
+                    </div>
+                    <div class='panel-body'>
+                        <ul class='list-unstyled' >
+                            <li><a ng-click='app.setFilter()'>All Messages (No filter)</a> </li>
+                            <li ng-repeat='filter in app.savedfilters'><a ng-click='app.setFilter(filter)'>{{filter.name}}</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9 col-md-10">
-                <div class="col-sm-10">
-                    <input class="form-control" type="text" placeholder="Search for messages" ng-model="app.filter">
+            <div class='col-sm-9 col-md-10'>
+                <div class='col-sm-10'>
+                    <input class='form-control' type='text' placeholder='Search for messages' ng-model='app.filter'>
                 </div>
-                <div class="col-sm-2">
-                    <button class="form-control" ng-click="app.clearLog()">Clear Log</button>
+                <div class='col-sm-2'>
+                    <button class='form-control' ng-click='app.clearLog()'>Clear Log</button>
                 </div>
-                <table id="content-table" class="table table-striped">
+                <table id='content-table' class='table table-striped'>
                     <thead>
                         <tr>
                             <th>Level</th>
@@ -40,9 +60,9 @@
                             <th>Message</th>
                         </tr>
                 </table>
-                <table id="content-table" class="table table-striped scrollable">
+                <table id='content-table' class='table table-striped scrollable'>
                     <tbody>
-                        <tr ng-class="message.logLevel" ng-repeat="message in app.messages| filter:{message: app.filter} | limitTo: -100">
+                        <tr ng-class='message.logLevel' ng-repeat='message in app.messages| filter:{message: app.filter} | limitTo: -100'>
                             <td>{{::message.level}}</td>
                             <td>{{::message.timestamp}}</td>
                             <td>{{::message.tag}}</td>
@@ -53,8 +73,9 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="./../../bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+
+    <script type='text/javascript' src='./../../bower_components/angular/angular.min.js'></script>
+    <script type='text/javascript' src='js/app.js'></script>
 </body>
 
 </html>

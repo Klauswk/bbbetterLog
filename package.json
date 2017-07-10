@@ -4,6 +4,7 @@
   "description": "An better log to bigbluebutton",
   "main": "app/main.js",
   "scripts": {
+    "postinstall": "install-app-deps",
     "test": "npm test",
     "start": "electron . --allow-file-access-from-files"
   },
@@ -18,5 +19,9 @@
     "electron": "^1.6.11",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2"
+  },
+  "dependencies": {
+    "electron-rebuild": "^1.5.11",
+    "sqlite3": "^3.1.8"
   }
 }
