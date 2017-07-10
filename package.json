@@ -4,7 +4,7 @@
   "description": "An better log to bigbluebutton",
   "main": "app/main.js",
   "scripts": {
-    "postinstall": "install-app-deps",
+    "postinstall": "electron-builder install-app-deps && ./node_modules/bower/bin/bower install",
     "test": "npm test",
     "start": "electron . --allow-file-access-from-files"
   },
@@ -16,11 +16,13 @@
   "author": "Klaus Klein",
   "license": "MIT",
   "devDependencies": {
+    "bower": "^1.8.0",
     "electron": "^1.6.11",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2"
   },
   "dependencies": {
+    "electron-builder": "^19.13.0",
     "electron-rebuild": "^1.5.11",
     "sqlite3": "^3.1.8"
   }
