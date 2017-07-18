@@ -65,9 +65,13 @@ angular.module('betterLog').controller('AppController', function ($scope) {
             });
             lineReader.on('line', function (line) {
                 if (line && line !== '\n') {
-                    const parsedLine = JSON.parse(line);
-                    parsedLine.logLevel = setLogLevel(parsedLine.level);
-                    vm.messages.push(parsedLine);
+                    try {
+                        const parsedLine = JSON.parse(line);
+                        parsedLine.logLevel = setLogLevel(parsedLine.level);
+                        vm.messages.push(parsedLine);
+                    } catch (err) {
+                        console.error("Error parsing the following JSON: " , line);
+                    }
                 }
             });
             lineReader.on('close', () => {
